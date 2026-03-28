@@ -1,0 +1,27 @@
+Brainstorm de Novas Funcionalidades - 25 de março de 2026
+
+Participantes: Felipe Rocha, Gabriela Santos, Hugo Lima
+
+[00:00] Felipe Rocha: E aí galera, hoje é só brainstorm, sem compromisso. Quero ouvir ideias malucas sobre o que a gente poderia fazer no produto.
+
+[01:00] Gabriela Santos: Tava pensando em integrar com o WhatsApp. Muita gente pede isso no suporte.
+
+[01:30] Hugo Lima: Integração com WhatsApp é interessante, mas é complexo. A API do WhatsApp Business tem várias limitações. Não sei se vale o esforço agora.
+
+[02:00] Felipe Rocha: E se a gente fizesse gamificação? Tipo pontos, badges, ranking entre usuários.
+
+[02:30] Gabriela Santos: Gamificação pode ser legal pro engajamento, mas pode parecer infantil dependendo do público. Nosso público é mais corporativo.
+
+[03:00] Hugo Lima: Eu tenho pensado em IA. A gente podia usar modelos de linguagem pra sugerir ações automaticamente com base nos dados do usuário.
+
+[03:30] Felipe Rocha: IA é tendência, mas precisa de muita infraestrutura. Tem o custo das APIs, tem questão de privacidade dos dados...
+
+[04:00] Gabriela Santos: E se em vez de IA generativa, a gente usasse só modelos mais simples de recomendação? Tipo "usuários parecidos com você fizeram X".
+
+[04:30] Hugo Lima: Isso é mais viável. Mas precisaria de um volume grande de dados pra funcionar bem.
+
+[05:00] Felipe Rocha: Bom, muitas ideias boas. Vamos deixar marinando e voltar a isso na próxima. Não vou definir nada agora.
+
+[05:15] Gabriela Santos: Beleza, concordo em não decidir nada ainda.
+
+[05:30] Hugo Lima: Combinado. Até a próxima!

@@ -1,0 +1,15 @@
+Alinhamento rápido - 28 de março de 2026
+
+Participantes: Ana Silva, Bruno Costa
+
+[00:00] Ana Silva: Bruno, rapidinho: o deploy de ontem tá ok?
+
+[00:10] Bruno Costa: Tá sim, zero erros no monitoring desde ontem à noite.
+
+[00:20] Ana Silva: Ótimo. E o PR da correção do login, já foi aprovado?
+
+[00:30] Bruno Costa: Já, mergiei hoje de manhã. Tá em staging pra teste.
+
+[00:40] Ana Silva: Perfeito, obrigada. Era só isso mesmo.
+
+[00:45] Bruno Costa: Valeu, até mais!

@@ -1,0 +1,35 @@
+Reunião de Planejamento do Q2 - 28 de março de 2026
+
+Participantes: Ana Silva, Bruno Costa, Carla Mendes, Daniel Oliveira
+
+[00:00] Ana Silva: Bom dia pessoal, vamos começar a reunião de planejamento do Q2. O objetivo principal hoje é definir as prioridades do próximo trimestre e alinhar os times.
+
+[00:45] Bruno Costa: Beleza Ana. Do lado de engenharia, a gente tem três grandes iniciativas: migração do banco de dados, refatoração da API de pagamentos e o novo sistema de notificações.
+
+[01:30] Carla Mendes: Do lado de produto, a prioridade número um é melhorar o onboarding. A gente tá perdendo 40% dos usuários na primeira semana. Eu acho que a gente devia investir em um fluxo guiado com tooltips.
+
+[02:15] Daniel Oliveira: Concordo com a Carla. Do lado de design, a gente fez uma pesquisa com 50 usuários e o principal feedback foi que o produto é muito complexo na primeira experiência. A ideia de tooltips é boa, mas eu iria além: sugiro criarmos um "modo simplificado" para novos usuários.
+
+[03:00] Ana Silva: Gostei dessa ideia do modo simplificado, Daniel. Carla, você consegue priorizar isso?
+
+[03:15] Carla Mendes: Consigo sim. Vou criar o PRD essa semana e alinhar com o Daniel no design.
+
+[03:30] Bruno Costa: Sobre a migração do banco, eu preciso de uma decisão: a gente vai pra PostgreSQL ou DynamoDB? Cada um tem trade-offs diferentes. PostgreSQL é mais familiar pro time, DynamoDB escala melhor.
+
+[04:00] Ana Silva: Essa é uma decisão importante. Bruno, você consegue preparar um comparativo até sexta? Vamos decidir na próxima reunião.
+
+[04:15] Bruno Costa: Consigo sim.
+
+[04:30] Carla Mendes: Outra coisa: a gente precisa definir as métricas de sucesso do Q2. Eu sugiro focar em retenção de 30 dias e NPS.
+
+[05:00] Daniel Oliveira: Acho que a gente devia incluir também o tempo médio até o primeiro "aha moment" do usuário. Isso tá diretamente ligado ao onboarding.
+
+[05:30] Ana Silva: Perfeito. Então ficamos com três métricas: retenção 30 dias, NPS e tempo até primeiro aha moment. Bruno, sobre o sistema de notificações, a gente consegue entregar no Q2?
+
+[06:00] Bruno Costa: Honestamente, se a migração do banco for prioridade, vai ser difícil fazer as duas coisas. O time não tem capacidade. Sugiro deixar notificações pro Q3.
+
+[06:30] Ana Silva: Faz sentido. Vamos priorizar banco e onboarding no Q2 então. Vou mandar um resumo pra todo mundo até o fim do dia. Mais alguma coisa?
+
+[07:00] Carla Mendes: Só confirmar: a review de OKRs vai ser dia 5 de abril, certo?
+
+[07:15] Ana Silva: Isso, dia 5 de abril. Obrigada pessoal!

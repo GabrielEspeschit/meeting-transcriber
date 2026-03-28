@@ -1,0 +1,33 @@
+Discussão sobre Arquitetura - 26 de março de 2026
+
+Participantes: Bruno Costa, Elena Ferreira, Fábio Almeida, Gustavo Pereira
+
+[00:00] Bruno Costa: Pessoal, precisamos decidir a arquitetura do novo serviço de autenticação. Tenho duas propostas: microserviço dedicado ou módulo dentro do monolito.
+
+[00:30] Elena Ferreira: Eu sou fortemente a favor de microserviço. A gente precisa escalar autenticação independentemente. Temos picos de login que não acompanham o tráfego geral.
+
+[01:00] Fábio Almeida: Discordo da Elena. Microserviço vai adicionar complexidade desnecessária. A gente já tem problemas com os 5 microserviços que temos. Service mesh, observabilidade, deploys independentes... é muito overhead pro time pequeno que somos.
+
+[01:30] Elena Ferreira: Mas se ficar no monolito, qualquer mudança em autenticação vai exigir deploy do sistema inteiro. E o blast radius de um bug é muito maior.
+
+[02:00] Gustavo Pereira: Eu entendo os dois lados. E se a gente fizesse um meio-termo? Módulo separado dentro do monolito agora, mas com interface bem definida pra facilitar a extração futura.
+
+[02:30] Bruno Costa: É uma abordagem válida, Gustavo. Mas na prática esse "extrair depois" nunca acontece. A gente sempre fala isso e nunca faz.
+
+[03:00] Fábio Almeida: Concordo com o Bruno nesse ponto. Se for pra ser microserviço, tem que ser agora. Mas eu continuo achando que não vale a pena.
+
+[03:30] Elena Ferreira: Olha, os dados mostram que 60% dos nossos incidentes no último trimestre envolveram autenticação. Isolar isso reduziria o impacto.
+
+[04:00] Bruno Costa: Esse dado é relevante. Mas a pergunta é: o problema é arquitetural ou de qualidade de código? Porque se for código ruim, microserviço não resolve.
+
+[04:30] Elena Ferreira: É os dois. Mas separar já ajuda a conter o dano.
+
+[05:00] Gustavo Pereira: Acho que a gente não vai resolver isso hoje. Sugiro que a Elena e o Fábio preparem cada um um RFC com prós e contras da sua abordagem, e a gente decide na quinta.
+
+[05:30] Bruno Costa: Concordo. Elena, Fábio, conseguem ter o RFC até quarta?
+
+[05:45] Elena Ferreira: Consigo.
+
+[05:50] Fábio Almeida: Também consigo.
+
+[06:00] Bruno Costa: Beleza, então decidimos na quinta. Obrigado pessoal.

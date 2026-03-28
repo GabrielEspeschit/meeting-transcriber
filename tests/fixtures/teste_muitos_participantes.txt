@@ -1,0 +1,45 @@
+Retrospectiva Sprint 14 - 27 de março de 2026
+
+Participantes: Ana Silva, Bruno Costa, Carla Mendes, Daniel Oliveira, Elena Ferreira, Fábio Almeida, Gustavo Pereira
+
+[00:00] Ana Silva: Vamos começar a retro da sprint 14. Primeiro, o que foi bem?
+
+[00:30] Bruno Costa: A entrega do módulo de relatórios ficou muito boa. O time se organizou bem.
+
+[00:45] Elena Ferreira: Concordo. E o pair programming que a gente fez ajudou muito na qualidade do código.
+
+[01:00] Carla Mendes: Do lado de produto, o feedback dos beta testers foi super positivo. 90% de aprovação.
+
+[01:30] Fábio Almeida: Eu achei que a comunicação entre front e back melhorou bastante nessa sprint. Menos retrabalho.
+
+[02:00] Ana Silva: Ótimo! E o que pode melhorar?
+
+[02:15] Daniel Oliveira: Os designs estão chegando muito em cima da hora. Eu preciso de pelo menos 3 dias antes do início do dev pra validar com o time.
+
+[02:45] Gustavo Pereira: As reuniões de daily tão muito longas. Deviam ser 15 minutos e tão levando 30.
+
+[03:00] Bruno Costa: Concordo com o Gustavo. Acho que a gente deveria limitar a 2 minutos por pessoa.
+
+[03:30] Elena Ferreira: Outra coisa: a gente não tem testes automatizados suficientes. Sempre tem bug em produção por causa disso. Eu sugiro que a gente defina uma meta de cobertura mínima.
+
+[04:00] Fábio Almeida: Apoio a ideia da Elena. Sugiro 80% de cobertura como meta.
+
+[04:15] Carla Mendes: Do lado de produto, eu acho que a gente deveria fazer mais user testing durante a sprint, não só no final.
+
+[04:45] Gustavo Pereira: Eu tenho uma ideia: a gente podia ter um "bug bash" no último dia da sprint. Todo mundo para e testa o que foi feito.
+
+[05:00] Daniel Oliveira: Gostei da ideia do bug bash. E complementa a questão dos testes automatizados.
+
+[05:30] Ana Silva: Beleza. Então temos algumas ações claras: designs entregues 3 dias antes, daily de 15 min max, meta de 80% de cobertura de testes, user testing durante a sprint, e bug bash no último dia. Quem fica responsável por cada uma?
+
+[06:00] Daniel Oliveira: Eu cuido da parte de antecipar os designs.
+
+[06:10] Gustavo Pereira: Eu organizo o bug bash.
+
+[06:20] Elena Ferreira: Eu configuro a meta de cobertura no CI.
+
+[06:30] Carla Mendes: Eu agendar o user testing nas sprints.
+
+[06:40] Bruno Costa: E eu facilito a daily mais curta.
+
+[07:00] Ana Silva: Perfeito! Obrigada a todos.
