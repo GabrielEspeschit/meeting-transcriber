@@ -1,0 +1,16 @@
+[project]
+name = "meeting-summary"
+version = "0.1.0"
+description = "CLI para gerar sumários estruturados de transcrições de reuniões usando Claude"
+requires-python = ">=3.9"
+dependencies = [
+    "anthropic>=0.39.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+meeting-summary = "meeting_summary.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
