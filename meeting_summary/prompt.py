@@ -96,10 +96,46 @@ PROMPTS = {
     "en": SYSTEM_PROMPT_EN,
 }
 
+_FOLDER_FORMAT_ADDITION_PT_BR = """\
+MEETING_FOLDER: <nome-exato-de-uma-das-pastas-fornecidas-ou-UNCLASSIFIED>
+"""
 
-def get_system_prompt(language: str = "pt-br") -> str:
-    return PROMPTS.get(language, SYSTEM_PROMPT_PT_BR)
+_FOLDER_FORMAT_ADDITION_EN = """\
+MEETING_FOLDER: <exact-name-of-one-of-the-provided-folders-or-UNCLASSIFIED>
+"""
+
+_FOLDER_RULES_PT_BR = """\
+- MEETING_FOLDER deve ser o nome exato de uma das pastas fornecidas, sem modificações. \
+Se a reunião não se encaixar claramente em nenhuma delas, escreva exatamente: UNCLASSIFIED
+- Não inclua as definições de pastas no conteúdo do resumo.
+"""
+
+_FOLDER_RULES_EN = """\
+- MEETING_FOLDER must be the exact name of one of the provided folders, without modifications. \
+If the meeting does not clearly fit any of them, write exactly: UNCLASSIFIED
+- Do not include folder definitions in the summary content.
+"""
 
 
-def build_user_message(transcription: str) -> str:
-    return f"Aqui está a transcrição da reunião para resumir:\n\n---\n{transcription}\n---"
+def get_system_prompt(language: str = "pt-br", folders: list = None) -> str:
+    base = PROMPTS.get(language, SYSTEM_PROMPT_PT_BR)
+    if not folders:
+        return base
+    if language == "en":
+        format_addition = _FOLDER_FORMAT_ADDITION_EN
+        rules_addition = _FOLDER_RULES_EN
+        slug_line = "MEETING_SLUG: <short-kebab-case-name-max-5-words>"
+    else:
+        format_addition = _FOLDER_FORMAT_ADDITION_PT_BR
+        rules_addition = _FOLDER_RULES_PT_BR
+        slug_line = "MEETING_SLUG: <nome-curto-em-kebab-case-sem-acentos-max-5-palavras>"
+    return base.replace(slug_line, slug_line + "\n" + format_addition, 1) + rules_addition
+
+
+def build_user_message(transcription: str, folders: list = None) -> str:
+    msg = f"Aqui está a transcrição da reunião para resumir:\n\n---\n{transcription}\n---"
+    if folders:
+        msg += "\n\nPastas disponíveis para classificação (não incluir no resumo):\n"
+        for f in folders:
+            msg += f"- {f.name}: {f.description}\n"
+    return msg
