@@ -6,6 +6,9 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from .folders import UNCLASSIFIED_EN, UNCLASSIFIED_PT_BR, discover_folders
+from .summarizer import summarize
+
 DEFAULT_OUTPUT_DIR = (
     "/Users/gabrielespeschit/Library/CloudStorage/OneDrive-Personal/"
     "Documentos/08 - Anotações/gabriel.esp/02. Transcrição de Reuniões"
@@ -22,8 +25,9 @@ def main():
         description="Gera um sumário estruturado a partir de uma transcrição de reunião."
     )
     parser.add_argument(
-        "transcription_file",
-        help="Caminho para o arquivo .txt de transcrição",
+        "transcription_files",
+        nargs="+",
+        help="Um ou mais arquivos .txt de transcrição",
     )
     parser.add_argument(
         "--output-dir",
@@ -55,15 +59,6 @@ def main():
     language = args.language or os.environ.get("LANGUAGE", DEFAULT_LANGUAGE)
     max_tokens = args.max_tokens or int(os.environ.get("MAX_TOKENS", DEFAULT_MAX_TOKENS))
 
-    # Validações
-    input_path = Path(args.transcription_file)
-    if not input_path.exists():
-        print(f"Erro: arquivo não encontrado: {input_path}", file=sys.stderr)
-        sys.exit(1)
-    if not input_path.suffix == ".txt":
-        print(f"Erro: esperado arquivo .txt, recebido: {input_path.suffix}", file=sys.stderr)
-        sys.exit(1)
-
     if not os.environ.get("ANTHROPIC_API_KEY"):
         print(
             "Erro: ANTHROPIC_API_KEY não está definida.\n"
@@ -77,39 +72,62 @@ def main():
         print(f"Erro: diretório de saída não encontrado: {output_path}", file=sys.stderr)
         sys.exit(1)
 
-    # Ler transcrição
-    transcription = input_path.read_text(encoding="utf-8")
-    if not transcription.strip():
-        print("Erro: arquivo de transcrição está vazio.", file=sys.stderr)
-        sys.exit(1)
+    folders = discover_folders(output_path)
+    unclassified = UNCLASSIFIED_PT_BR if language != "en" else UNCLASSIFIED_EN
+    if folders:
+        print(f"Pastas encontradas: {', '.join(f.name for f in folders)}")
 
-    # Gerar sumário
-    print(f"Processando: {input_path.name}")
-    print(f"Modelo: {model}")
-    print(f"Idioma: {language}")
+    errors = []
+    input_paths = [Path(f) for f in args.transcription_files]
 
-    try:
-        from .summarizer import summarize
+    for input_path in input_paths:
+        try:
+            if not input_path.exists():
+                raise FileNotFoundError(f"arquivo não encontrado: {input_path}")
+            if input_path.suffix != ".txt":
+                raise ValueError(f"esperado .txt, recebido: {input_path.suffix}")
 
-        result = summarize(
-            transcription=transcription,
-            model=model,
-            language=language,
-            max_tokens=max_tokens,
+            transcription = input_path.read_text(encoding="utf-8")
+            if not transcription.strip():
+                raise ValueError("arquivo de transcrição está vazio")
+
+            print(f"Processando: {input_path.name}")
+
+            result = summarize(
+                transcription=transcription,
+                model=model,
+                language=language,
+                max_tokens=max_tokens,
+                folders=folders if folders else None,
+            )
+
+            if folders:
+                raw_folder = result.get("meeting_folder") or ""
+                valid_names = {f.name for f in folders}
+                folder_name = raw_folder if raw_folder in valid_names else unclassified
+                dest_dir = output_path / folder_name
+            else:
+                dest_dir = output_path
+
+            dest_dir.mkdir(parents=True, exist_ok=True)
+
+            today = date.today().isoformat()
+            slug = result["title_slug"] or input_path.stem
+            output_file = dest_dir / f"{today}_{slug}.md"
+
+            output_file.write_text(result["markdown"], encoding="utf-8")
+            print(f"Sumário salvo em: {output_file}")
+
+        except Exception as e:
+            errors.append(input_path.name)
+            print(f"ERRO [{input_path.name}]: {e}", file=sys.stderr)
+
+    if errors:
+        print(
+            f"\n{len(errors)} arquivo(s) falharam: {', '.join(errors)}",
+            file=sys.stderr,
         )
-    except Exception as e:
-        print(f"Erro ao chamar a API: {e}", file=sys.stderr)
         sys.exit(1)
-
-    # Determinar nome do arquivo de saída
-    today = date.today().isoformat()
-    slug = result["title_slug"] or input_path.stem
-    output_filename = f"{today}_{slug}.md"
-    output_file = output_path / output_filename
-
-    # Salvar
-    output_file.write_text(result["markdown"], encoding="utf-8")
-    print(f"Sumário salvo em: {output_file}")
 
 
 if __name__ == "__main__":
